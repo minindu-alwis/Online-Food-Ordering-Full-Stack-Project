@@ -1,44 +1,30 @@
 package com.icet.onlinefoodordering.online_food_ordering.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.icet.onlinefoodordering.online_food_ordering.dto.RestaurantDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "orders")
-public class Order {
-
+public class IngredientCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
-    private User customer;
+    private String name;
 
     @JsonIgnore
     @ManyToOne
     private Restaurant restaurant;
 
-    private Long totalAmount;
-    private String orderStatus;
-    private Date createdAt;
+    @OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
+    private List<IngredientsItem> ingredients=new ArrayList<>();
 
-    @ManyToOne
-    private Address deliveryAddress;
-
-    @OneToMany
-    private List<OrderItem> items;
-
-    //private Payment payment
-    private int totalItem;
-    private int totalPrice;
 }
