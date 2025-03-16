@@ -97,7 +97,7 @@ public class AuthController {
 
         AuthResponce authResponce=new AuthResponce();
         authResponce.setJwt(jwt);
-        authResponce.setMessage("register succsess");
+        authResponce.setMessage("User Have");
         authResponce.setRole(USER_ROLE.valueOf(role));
 
         return new ResponseEntity<>(authResponce, HttpStatus.OK);
