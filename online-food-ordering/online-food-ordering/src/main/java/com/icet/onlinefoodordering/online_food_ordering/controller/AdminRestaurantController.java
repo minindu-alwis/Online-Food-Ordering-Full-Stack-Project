@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/admin/restaurant")
+@RequestMapping("/api/admin/restaurants")
 public class AdminRestaurantController {
 
     private final RestaurantService restaurantService;
     private final UserService userService;
 
-    @PostMapping("/create")
+    @PostMapping()
     public ResponseEntity<Restaurant> createRestaurant(@RequestBody CreateRestaurantRequest req, @RequestHeader("Authorization")String jwt) throws Exception {
         User user=userService.findUserByJwtToken(jwt);
 
