@@ -20,9 +20,9 @@ public class AdminFoodController {
 
     private final FoodService foodService;
 
-    private UserService userService;
+    private final UserService userService;
 
-    private RestaurantService restaurantService;
+    private final RestaurantService restaurantService;
 
     @PostMapping
     public ResponseEntity<Food> createFood(@RequestBody CreateFoodRequest req, @RequestHeader("Authorization") String jwt) throws Exception {
