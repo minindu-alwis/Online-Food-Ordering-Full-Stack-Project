@@ -21,9 +21,9 @@ public class FoodController {
 
     private final FoodService foodService;
 
-    private UserService userService;
+    private final UserService userService;
 
-    private RestaurantService restaurantService;
+    private final RestaurantService restaurantService;
 
     @GetMapping("/search")
     public ResponseEntity<List<Food>> searchFood(@RequestParam String name,@RequestHeader("Authorization") String jwt) throws Exception {
