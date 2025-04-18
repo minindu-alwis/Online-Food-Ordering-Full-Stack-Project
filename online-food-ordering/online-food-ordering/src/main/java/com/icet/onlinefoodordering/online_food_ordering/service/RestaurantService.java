@@ -18,4 +18,6 @@ public interface RestaurantService {
     Restaurant getRestaurantByUserId(Long userId)throws Exception;
     RestaurantDto addToFavorites(Long restaurantId,User user)throws Exception;
     Restaurant updateRestaurantStatus(Long id)throws Exception;
+
+    Restaurant getRestaurantById(Long restaurantId) throws Exception;
 }

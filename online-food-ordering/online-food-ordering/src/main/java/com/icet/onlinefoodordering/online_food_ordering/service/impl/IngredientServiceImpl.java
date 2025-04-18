@@ -28,6 +28,7 @@ public class IngredientServiceImpl implements IngredientsService {
         IngredientCategory category=new IngredientCategory();
         category.setRestaurant(restaurant);
         category.setName(name);
+        System.out.println("aliwssssss");
         return ingredientCategoryRepository.save(category);
     }
 
@@ -49,7 +50,7 @@ public class IngredientServiceImpl implements IngredientsService {
 
     @Override
     public IngredientsItem createIngredientItem(Long restaurantId, String ingredientName, Long categoryId) throws Exception {
-        Restaurant restaurant=restaurantService.getRestaurantByUserId(restaurantId);
+        Restaurant restaurant=restaurantService.getRestaurantById(restaurantId);
         IngredientCategory category=findIngredientCategoryById(categoryId);
 
         IngredientsItem item=new IngredientsItem();

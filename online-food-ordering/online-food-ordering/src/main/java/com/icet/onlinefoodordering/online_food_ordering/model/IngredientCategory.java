@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "ingredient_category")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -24,6 +25,7 @@ public class IngredientCategory {
     @ManyToOne
     private Restaurant restaurant;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
     private List<IngredientsItem> ingredients=new ArrayList<>();
 

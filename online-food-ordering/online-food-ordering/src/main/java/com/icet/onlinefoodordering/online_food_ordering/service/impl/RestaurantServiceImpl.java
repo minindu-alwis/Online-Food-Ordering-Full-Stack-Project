@@ -141,4 +141,10 @@ public class RestaurantServiceImpl implements RestaurantService {
         restaurant.setOpen(!restaurant.isOpen());
         return restaurantRepository.save(restaurant);
     }
+
+    @Override
+    public Restaurant getRestaurantById(Long restaurantId) throws Exception {
+        return restaurantRepository.findById(restaurantId)
+                .orElseThrow(() -> new Exception("Restaurant not found with id " + restaurantId));
+    }
 }
