@@ -9,6 +9,7 @@ import com.icet.onlinefoodordering.online_food_ordering.service.FoodService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -32,6 +33,7 @@ public class FoodServiceImpl implements FoodService {
         food.setPrice(req.getPrice());
         food.setIngredients(req.getIngredients());
         food.setSeasonal(req.isSeasional());
+        food.setCreationDate(new Date());
         food.setVegetarian(req.isVegetarin());
 
         Food savedFood = foodRepository.save(food);
