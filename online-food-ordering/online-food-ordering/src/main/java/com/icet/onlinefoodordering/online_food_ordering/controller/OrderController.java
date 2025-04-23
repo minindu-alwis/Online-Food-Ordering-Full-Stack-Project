@@ -5,7 +5,9 @@ import com.icet.onlinefoodordering.online_food_ordering.model.Order;
 import com.icet.onlinefoodordering.online_food_ordering.model.User;
 import com.icet.onlinefoodordering.online_food_ordering.request.AddCartItemRequest;
 import com.icet.onlinefoodordering.online_food_ordering.request.OrderRequest;
+import com.icet.onlinefoodordering.online_food_ordering.response.PaymentResponse;
 import com.icet.onlinefoodordering.online_food_ordering.service.OrderService;
+import com.icet.onlinefoodordering.online_food_ordering.service.PaymentService;
 import com.icet.onlinefoodordering.online_food_ordering.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,14 +24,18 @@ public class OrderController {
 
     private final OrderService orderService;
     private final UserService userService;
+    private final PaymentService paymentService;
 
     @PostMapping("/order")
-    public ResponseEntity<Order> createOrder(@RequestBody OrderRequest req,
-                                                  @RequestHeader("Authorization") String jwt) throws Exception {
+    public ResponseEntity<PaymentResponse> createOrder(@RequestBody OrderRequest req,
+                                                       @RequestHeader("Authorization") String jwt) throws Exception {
 
         User user=userService.findUserByJwtToken(jwt);
         Order order=orderService.createOrder(req,user);
-        return new ResponseEntity<>(order, HttpStatus.OK);
+        PaymentResponse res=paymentService.createPaymentLink(order);
+
+        System.out.println(res);
+        return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
 
