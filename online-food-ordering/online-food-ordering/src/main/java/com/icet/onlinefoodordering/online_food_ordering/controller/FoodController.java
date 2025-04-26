@@ -49,6 +49,15 @@ public class FoodController {
 
     }
 
+    @GetMapping("/restaurantminidu/{restaurantId}")
+    public ResponseEntity<List<Food>> getRestaurantFoods(
+                                                        @PathVariable Long restaurantId,
+                                                        @RequestHeader("Authorization") String jwt) throws Exception {
 
+        User user=userService.findUserByJwtToken(jwt);
 
+        List<Food> foods = foodService.getRestaurantFoodsWithNoReq(restaurantId);
+        return new ResponseEntity<>(foods, HttpStatus.OK);
+
+    }
 }

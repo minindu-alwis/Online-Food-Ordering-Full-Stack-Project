@@ -111,4 +111,9 @@ public class FoodServiceImpl implements FoodService {
        food.setAvailable(!food.isAvailable());
        return foodRepository.save(food);
     }
+
+    @Override
+    public List<Food> getRestaurantFoodsWithNoReq(Long restaurantId) {
+        return foodRepository.findByRestaurantId(restaurantId);
+    }
 }
